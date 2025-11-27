@@ -1,9 +1,4 @@
 
-* **LIVE_DEMO_LINK**
-* **SCREENSHOT_PATH** (`/public/home.png` )
-
----
-
 # 📘 **EventFlow – Event Management Platform**
 
 EventFlow is a modern, responsive event management application built with **Next.js 14 (App Router)**, **NextAuth**, and **TailwindCSS**.
@@ -20,7 +15,7 @@ Users can log in with Google, create events, manage their events, and browse upc
 
 ## 🖼️ **Home Page Screenshot**
 
-![EventFlow Home Page](./public/home.png)
+![EventFlow Home Page](./public/homepage.png)
 
 
 ---
