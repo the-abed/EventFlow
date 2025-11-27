@@ -16,17 +16,13 @@ export default function Login() {
     try {
       const res = await axiosSecure.post("/api/login", { email, password });
       localStorage.setItem("token", res.data.token);
+
       // Notify other components/tabs that auth changed
-      try {
-        window.dispatchEvent(new Event("authChanged"));
-      } catch (e) {}
-      // Redirect back to the originally requested protected path (if provided)
-      try {
-        const target = decodeURIComponent(fromParam || "/");
-        router.replace(target);
-      } catch (err) {
-        router.replace("/");
-      }
+      window.dispatchEvent(new Event("authChanged"));
+
+      // Redirect back to protected path if provided
+      const target = decodeURIComponent(fromParam || "/");
+      router.replace(target);
     } catch (err) {
       alert(err.response?.data?.message || "Login failed");
       console.error(err);
@@ -34,7 +30,6 @@ export default function Login() {
   };
 
   const handleGoogleLogin = () => {
-    // Redirect user to backend Google OAuth
     window.location.href = "http://localhost:5000/api/auth/google";
   };
 
