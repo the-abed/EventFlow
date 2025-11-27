@@ -105,7 +105,7 @@ export default function LoginContent() {
         )}
 
         {/* Email Login Form */}
-        <form onSubmit={handleEmailLogin} className="flex flex-col gap-4">
+        <form onSubmit={handleEmailLogin} className="flex flex-col gap-4 text-black">
           <div>
             <label className="text-gray-700 text-sm mb-1 block">Email</label>
             <input
@@ -162,7 +162,7 @@ export default function LoginContent() {
         {/* Signup Link */}
         <p className="text-center text-gray-600 mt-5 text-sm">
           Don’t have an account?
-          <a href="/signup" className="text-green-700 font-semibold hover:underline ml-1">
+          <a href="/register" className="text-green-700 font-semibold hover:underline ml-1">
             Create one
           </a>
         </p>

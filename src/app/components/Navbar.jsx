@@ -45,7 +45,7 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 bg-white/30 backdrop-blur-xl shadow-sm border-b border-white/40">
+    <nav className="fixed top-0 left-0 w-full z-50 bg-white/10 backdrop-blur-xl shadow-sm ">
       <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
         {/* Logo */}
    {/* Logo */}
@@ -63,7 +63,7 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop Menu */}
-        <ul className="hidden md:flex items-center gap-8 text-primary font-semibold">
+        <ul className="hidden md:flex items-center gap-8 text-white font-semibold">
           <li>
             <Link className="hover:text-accent transition" href="/">
               Home

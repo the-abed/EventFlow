@@ -55,7 +55,7 @@ export default function Register() {
           </div>
         )}
 
-        <form onSubmit={handleRegister} className="flex flex-col gap-4">
+        <form onSubmit={handleRegister} className="flex flex-col gap-4 text-black">
           {/* Name */}
           <div>
             <label className="text-gray-700 text-sm mb-1 block">Full Name</label>
@@ -65,7 +65,7 @@ export default function Register() {
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
-              className="w-full p-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-green-500 focus:outline-none"
+              className="w-full p-3 rounded-xl text-black border border-gray-300 focus:ring-2 focus:ring-green-500 focus:outline-none"
             />
           </div>
 
