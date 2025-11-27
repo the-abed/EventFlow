@@ -51,7 +51,7 @@ export default function Navbar() {
    {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
           <Image
-            src="/logo.png"        // 🔥 your logo file
+            src="/EventFlowLogo.png"        // 🔥 your logo file
             alt="EventFlow Logo"
             width={60}             // you can change size
             height={60}
@@ -67,6 +67,11 @@ export default function Navbar() {
           <li>
             <Link className="hover:text-accent transition" href="/">
               Home
+            </Link>
+          </li>
+          <li>
+            <Link className="hover:text-accent transition" href="/event">
+             All Events
             </Link>
           </li>
 
@@ -124,14 +129,19 @@ export default function Navbar() {
 
       {/* Mobile Dropdown */}
       <div
-        className={`md:hidden overflow-hidden transition-all duration-300 ${
-          isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+        className={`md:hidden absolute top-full left-96 w-full transition-all duration-300  bg-black/50 backdrop-blur-xl rounded-b-xl overflow-hidden ${
+          isOpen ? "max-h-96 opacity-100 " : "max-h-0 opacity-0"
         }`}
       >
-        <ul className="bg-white/70 backdrop-blur-xl px-4 py-4 flex flex-col gap-4 font-semibold text-primary shadow-lg border-t border-white/40">
+        <ul className="bg-black/10 backdrop-blur-xl px-4 py-4 flex flex-col gap-4 font-semibold text-white shadow-lg border-t border-white/40 ">
           <li>
             <Link onClick={() => setIsOpen(false)} href="/">
               Home
+            </Link>
+          </li>
+          <li>
+            <Link onClick={() => setIsOpen(false)} href="/event">
+              All Events
             </Link>
           </li>
 

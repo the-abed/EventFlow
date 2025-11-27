@@ -12,7 +12,7 @@ export default function Footer() {
         <div className="flex flex-col items-center md:items-start gap-3">
           <div className="flex items-center gap-2">
             <Image
-              src="/logo.png"      // <-- must be inside public/logo.png
+              src="/EventFlowLogo.png"      // <-- must be inside public/logo.png
               alt="EventFlow Logo"
               width={45}
               height={45}
@@ -27,16 +27,20 @@ export default function Footer() {
         </div>
 
         {/* Useful Links */}
-        <div className="flex flex-col text-center md:text-left gap-2">
-          <h3 className="text-white font-semibold mb-2">Quick Links</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2  text-center md:text-left gap-2">
+          
 
-          <a href="#" className="hover:text-white transition">About Us</a>
+<div>
+            <a href="#" className="hover:text-white transition">About Us</a>
           <a href="#" className="hover:text-white transition">Privacy Policy</a>
           <a href="#" className="hover:text-white transition">Terms & Conditions</a>
-          <a href="#" className="hover:text-white transition">FAQ</a>
+</div>
+         <div>
+           <a href="#" className="hover:text-white transition">FAQ</a>
           <a href="#" className="hover:text-white transition">Support</a>
           <a href="#" className="hover:text-white transition">Careers</a>
           <a href="#" className="hover:text-white transition">Blog</a>
+         </div>
         </div>
 
         {/* Social Icons */}
@@ -44,7 +48,7 @@ export default function Footer() {
           <h3 className="text-white font-semibold mb-2">Follow Us</h3>
 
           <div className="flex gap-4 text-lg">
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
+            <a href="https://www.facebook.com/mdabed.azim" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
               <FaFacebookF />
             </a>
             <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
@@ -53,7 +57,7 @@ export default function Footer() {
             <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
               <FaInstagram />
             </a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
+            <a href="https://www.linkedin.com/in/mohammad-abed-azim/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
               <FaLinkedinIn />
             </a>
           </div>

@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import axiosSecure from "@/app/lib/axiosSecure";
+import Swal from "sweetalert2";
 
 export default function EventForm() {
   const [title, setTitle] = useState("");
@@ -13,20 +14,45 @@ export default function EventForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
-    try {
-      const formData = new FormData();
-      formData.append("title", title);
-      formData.append("description", description);
-      formData.append("date", date);
-      formData.append("location", location);
-      if (image) formData.append("image", image);
+    if (!image) return Swal.fire("Error", "Please select an image", "error");
 
-      await axiosSecure.post("/api/events", formData, {
-        headers: { "Content-Type": "multipart/form-data" },
+    setLoading(true);
+
+    try {
+      // 1️⃣ Upload image to ImgBB
+      const formData = new FormData();
+      formData.append("image", image);
+
+      const imgbbApiKey = process.env.NEXT_PUBLIC_IMGBB_API;
+      const imgbbRes = await fetch(
+        `https://api.imgbb.com/1/upload?key=${imgbbApiKey}`,
+        { method: "POST", body: formData }
+      );
+
+      if (!imgbbRes.ok) throw new Error("Failed to upload image");
+
+      const imgbbData = await imgbbRes.json();
+      const imageUrl = imgbbData.data.url;
+
+      // 2️⃣ Send event data to backend
+      const res = await axiosSecure.post("/api/events", {
+        title,
+        description,
+        date,
+        location,
+        image: imageUrl,
       });
 
-      alert("Event added successfully!");
+      if (res.status !== 201) throw new Error(res.data?.message || "Failed to create event");
+
+      Swal.fire({
+        icon: "success",
+        title: "Event added successfully",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+
+      // Reset form
       setTitle("");
       setDescription("");
       setDate("");
@@ -34,99 +60,82 @@ export default function EventForm() {
       setImage(null);
     } catch (err) {
       console.error(err);
-      alert(err.response?.data?.message || "Failed to add event");
+      Swal.fire({
+        icon: "error",
+        title: err.message || "Failed to add event",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-6">
-      
+    <form
+      onSubmit={handleSubmit}
+      className="flex flex-col gap-5 max-w-xl mx-auto p-6 bg-white/10 backdrop-blur-md rounded-2xl shadow-lg"
+    >
       {/* Title */}
-      <div className="relative">
+      <div className="flex flex-col">
+        <label className="text-gray-200 font-medium mb-1">Event Title</label>
         <input
           type="text"
-          id="title"
+          placeholder="Enter title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           required
-          className="peer w-full p-4 rounded-xl bg-white/10 border border-white/20 text-white placeholder-transparent focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition"
-          placeholder="Event Title"
+          className="p-4 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition shadow-sm"
         />
-        <label
-          htmlFor="title"
-          className="absolute left-4 top-4 text-gray-400 text-sm peer-placeholder-shown:top-4 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-sm peer-focus:top-[-0.6rem] peer-focus:text-accent peer-focus:text-xs transition-all"
-        >
-          Event Title
-        </label>
       </div>
 
       {/* Description */}
-      <div className="relative">
+      <div className="flex flex-col">
+        <label className="text-gray-200 font-medium mb-1">Event Description</label>
         <textarea
-          id="description"
+          placeholder="Enter description"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           required
           rows={4}
-          className="peer w-full p-4 rounded-xl bg-white/10 border border-white/20 text-white placeholder-transparent focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition resize-none"
-          placeholder="Event Description"
+          className="p-4 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition shadow-sm resize-none"
         />
-        <label
-          htmlFor="description"
-          className="absolute left-4 top-4 text-gray-400 text-sm peer-placeholder-shown:top-4 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-sm peer-focus:top-[-0.6rem] peer-focus:text-accent peer-focus:text-xs transition-all"
-        >
-          Event Description
-        </label>
       </div>
 
       {/* Date & Location */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="relative">
+        <div className="flex flex-col">
+          <label className="text-gray-200 font-medium mb-1">Event Date</label>
           <input
             type="date"
-            id="date"
             value={date}
             onChange={(e) => setDate(e.target.value)}
             required
-            className="peer w-full p-4 rounded-xl bg-white/10 border border-white/20 text-white placeholder-transparent focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition"
-            placeholder="Event Date"
+            className="p-4 rounded-xl bg-white/10 border border-white/20 text-white focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition shadow-sm"
           />
-          <label
-            htmlFor="date"
-            className="absolute left-4 top-4 text-gray-400 text-sm peer-placeholder-shown:top-4 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-sm peer-focus:top-[-0.6rem] peer-focus:text-accent peer-focus:text-xs transition-all"
-          >
-            
-          </label>
         </div>
-
-        <div className="relative">
+        <div className="flex flex-col">
+          <label className="text-gray-200 font-medium mb-1">Location</label>
           <input
             type="text"
-            id="location"
+            placeholder="Enter location"
             value={location}
             onChange={(e) => setLocation(e.target.value)}
             required
-            className="peer w-full p-4 rounded-xl bg-white/10 border border-white/20 text-white placeholder-transparent focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition"
-            placeholder="Event Location"
+            className="p-4 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition shadow-sm"
           />
-          <label
-            htmlFor="location"
-            className="absolute left-4 top-4 text-gray-400 text-sm peer-placeholder-shown:top-4 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-sm peer-focus:top-[-0.6rem] peer-focus:text-accent peer-focus:text-xs transition-all"
-          >
-            Event Location
-          </label>
         </div>
       </div>
 
       {/* Image Upload */}
-      <div>
+      <div className="flex flex-col">
+        <label className="text-gray-200 font-medium mb-1">Event Image</label>
         <input
           type="file"
           accept="image/*"
           onChange={(e) => setImage(e.target.files[0])}
-          className="text-gray-200"
+          required
+          className="text-gray-200 p-2 rounded-xl bg-white/10 border border-white/20 focus:outline-none focus:ring-2 focus:ring-accent transition"
         />
       </div>
 
@@ -134,7 +143,7 @@ export default function EventForm() {
       <button
         type="submit"
         disabled={loading}
-        className="bg-gradient-to-r from-primary to-accent py-3 rounded-xl text-black font-semibold hover:opacity-90 transition"
+        className="bg-gradient-to-r from-primary to-accent py-3 rounded-xl text-black font-semibold hover:opacity-90 transition shadow-md btn bg-primary hover:bg-accent hover:text-white"
       >
         {loading ? "Adding..." : "Add Event"}
       </button>

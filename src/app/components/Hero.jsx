@@ -14,7 +14,7 @@ export default function Hero() {
   ];
 
   return (
-    <section className="relative w-full h-[80vh] text-white flex items-center justify-center rounded-xl mt-28">
+    <section className="relative w-full h-[50vh] md:h-[80vh] text-white flex items-center justify-center rounded-xl mt-28">
       {/* Background Slider */}
       <Swiper
         modules={[Autoplay, Pagination]}
@@ -26,24 +26,23 @@ export default function Hero() {
         {slides.map((src, index) => (
           <SwiperSlide key={index}>
             <div
-              className="w-full h-full bg-cover bg-center rounded-2xl"
+              className="w-full h-full  bg-cover bg-center rounded-2xl"
               style={{ backgroundImage: `url(${src})` }}
             >
-
-               <div className="absolute inset-0 flex flex-col items-center justify-center">
-        <h1 className="text-4xl md:text-6xl font-bold text-primary mb-4">
-          Manage Your Events Seamlessly
-        </h1>
-        <p className="text-lg md:text-2xl mb-6">
-          Organize, track, and share your events all in one place.
-        </p>
-        <Link
-          href="/register"
-          className="inline-block px-8 py-3 bg-white text-primary font-semibold rounded-lg shadow hover:bg-gray-200 transition"
-        >
-          Get Started
-        </Link>
-      </div>
+              <div className="absolute inset-0 flex flex-col items-center justify-center">
+                <h1 className="text-4xl md:text-6xl font-bold text-primary mb-4">
+                  Manage Your Events Seamlessly
+                </h1>
+                <p className="text-lg md:text-2xl mb-6">
+                  Organize, track, and share your events all in one place.
+                </p>
+                <Link
+                  href="/register"
+                  className="inline-block px-8 py-3 bg-white text-primary font-semibold rounded-lg shadow hover:bg-gray-200 transition"
+                >
+                  Get Started
+                </Link>
+              </div>
             </div>
           </SwiperSlide>
         ))}
@@ -53,7 +52,6 @@ export default function Hero() {
       <div className="absolute inset-0 bg-black/60 z-10"></div>
 
       {/* Foreground Content */}
-     
     </section>
   );
 }

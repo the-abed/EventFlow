@@ -4,6 +4,9 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import axiosSecure from "@/app/lib/axiosSecure";
+import { signInWithPopup } from "firebase/auth";
+import { auth, googleProvider } from "@/app/lib/firebase.config";
+import GoogleLoginButton from "@/app/components/GoogleLoginButton";
 
 export default function LoginContent() {
   const [email, setEmail] = useState("");
@@ -71,12 +74,23 @@ export default function LoginContent() {
     }
   };
 
-  const handleGoogleLogin = () => {
-    const backendURL = process.env.NEXT_PUBLIC_API_BASE || "http://localhost:5000";
-    const googleAuthURL = `${backendURL}/api/auth/google`;
-    // redirect user to backend which starts Google OAuth flow
-    window.location.href = googleAuthURL;
-  };
+  const handleGoogleLogin = async () => {
+  const result = await signInWithPopup(auth, googleProvider);
+  const token = await result.user.getIdToken();
+  localStorage.setItem("token", token);
+  window.dispatchEvent(new Event("authChanged"));
+
+  const target = decodeURIComponent(fromParam || "/manage-event");
+  router.replace(target);
+  
+};
+
+  // const handleGoogleLogin = () => {
+  //   const backendURL = process.env.NEXT_PUBLIC_API_BASE || "http://localhost:5000";
+  //   const googleAuthURL = `${backendURL}/api/auth/google`;
+  //   // redirect user to backend which starts Google OAuth flow
+  //   window.location.href = googleAuthURL;
+  // };
 
   return (
     <div className="min-h-screen flex items-center justify-center  px-4">
