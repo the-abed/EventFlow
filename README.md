@@ -1,36 +1,144 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+* **LIVE_DEMO_LINK**
+* **SCREENSHOT_PATH** (`/public/home.png` )
 
-First, run the development server:
+---
+
+# 📘 **EventFlow – Event Management Platform**
+
+EventFlow is a modern, responsive event management application built with **Next.js 14 (App Router)**, **NextAuth**, and **TailwindCSS**.
+Users can log in with Google, create events, manage their events, and browse upcoming events in a clean and polished UI.
+
+---
+
+## 🌐 **Live Demo**
+
+👉 **Live Project:** [https://event-flow-brown.vercel.app//](https://event-flow-brown.vercel.app/)
+
+
+---
+
+## 🖼️ **Home Page Screenshot**
+
+![EventFlow Home Page](./public/home.png)
+
+
+---
+
+## ✨ **Features**
+
+### 🔐 Authentication
+
+* Google Login (NextAuth)
+* Dynamic Navbar based on user session
+* Protected routes for "Add Event" & "Manage Event"
+
+### 🗂️ Event Management
+
+* Add new events
+* View all events
+* Manage your events
+* Fully responsive UI
+
+### 🎨 UI & Styling
+
+* TailwindCSS
+* Modern Navbar & Footer
+* Clean, minimal, mobile-first design
+
+---
+
+## 🛠️ **Tech Stack**
+
+| Technology      | Purpose                                |
+| --------------- | -------------------------------------- |
+| **Next.js 14**  | Frontend framework & full-stack routes |
+| **NextAuth.js** | Authentication (Google OAuth)          |
+| **TailwindCSS** | UI styling                             |
+| **Axios**       | API requests                           |
+| **Vercel**      | Deployment                             |
+
+---
+
+## 📁 **Project Structure**
+
+```
+eventflow/
+│── app/
+│   │── (auth)/login/
+│   │── add-event/
+│   │── manage-event/
+│   │── api/auth/[...nextauth]/
+│   └── components/
+│── lib/
+│── public/
+│── styles/
+│── .env.local
+│── package.json
+└── README.md
+```
+
+---
+
+## ⚙️ **Environment Variables**
+
+Create a `.env.local` in the project root:
+
+```
+GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_CLIENT_SECRET=your_google_client_secret
+NEXTAUTH_SECRET=your_generated_secret
+NEXTAUTH_URL=http://localhost:3000
+```
+
+---
+
+## 🚀 **Getting Started (Local Setup)**
+
+### 1. Clone the repo
+
+```bash
+git clone https://github.com/your-username/eventflow.git
+cd eventflow
+```
+
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+### 3. Run the development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Now open **[http://localhost:3000](http://localhost:3000)**
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🔥 **Deployment**
 
-## Learn More
+EventFlow is fully optimized for **Vercel**.
 
-To learn more about Next.js, take a look at the following resources:
+1. Push project to GitHub
+2. Go to [https://vercel.com](https://vercel.com)
+3. Import your project
+4. Add environment variables in Vercel Dashboard
+5. Deploy 🎉
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🙌 **Author**
 
-## Deploy on Vercel
+**Mohammad Abed**
+EventFlow – Event Management Platform
+Feel free to connect or contribute!
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📄 **License**
+
+This project is open-source and available under the MIT License.
+
