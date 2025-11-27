@@ -14,7 +14,7 @@ export default function Hero() {
   ];
 
   return (
-    <section className="relative w-full h-[80vh] text-white flex items-center justify-center rounded-xl">
+    <section className="relative w-full h-[80vh] text-white flex items-center justify-center rounded-xl mt-28">
       {/* Background Slider */}
       <Swiper
         modules={[Autoplay, Pagination]}
@@ -26,18 +26,11 @@ export default function Hero() {
         {slides.map((src, index) => (
           <SwiperSlide key={index}>
             <div
-              className="w-full h-full bg-cover bg-center"
+              className="w-full h-full bg-cover bg-center rounded-2xl"
               style={{ backgroundImage: `url(${src})` }}
-            ></div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+            >
 
-      {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-black/60 z-10"></div>
-
-      {/* Foreground Content */}
-      <div className="relative z-20 text-center px-6 max-w-3xl">
+               <div className="absolute inset-0 flex flex-col items-center justify-center">
         <h1 className="text-4xl md:text-6xl font-bold text-primary mb-4">
           Manage Your Events Seamlessly
         </h1>
@@ -51,6 +44,16 @@ export default function Hero() {
           Get Started
         </Link>
       </div>
+            </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+
+      {/* Dark Overlay */}
+      <div className="absolute inset-0 bg-black/60 z-10"></div>
+
+      {/* Foreground Content */}
+     
     </section>
   );
 }
