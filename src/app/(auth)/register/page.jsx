@@ -122,7 +122,7 @@ export default function Register() {
           disabled
           className="w-full flex items-center justify-center gap-3 bg-gray-200 text-gray-500 py-3 rounded-xl font-medium cursor-not-allowed"
         >
-          <Image src="/google-logo.png" alt="Google" width={20} height={20} />
+          <Image src="/google.png" alt="Google" width={20} height={20} />
           Sign up with Google (Not enabled)
         </button>
 

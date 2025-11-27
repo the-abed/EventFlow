@@ -155,7 +155,7 @@ export default function LoginContent() {
           className="w-full flex items-center justify-center gap-3 bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 py-3 rounded-xl font-medium shadow-sm hover:shadow transition"
         >
           {/* If you have a small google logo in public/google-logo.png */}
-          <Image src="/google-logo.png" alt="Google" width={20} height={20} className="object-contain" />
+          <Image src="/google.png" alt="Google" width={20} height={20} className="object-contain" />
           Continue with Google
         </button>
 

@@ -2,9 +2,9 @@ import Image from "next/image";
 import CTABanner from "./components/CTABanner";
 import Hero from "./components/Hero";
 import Testimonials from "./components/Testimonials";
-import FeaturesSection from "./components/FeaturesSection";
 import EventsPage from "./(protected)/event/[id]/page";
 import Pricing from "./components/Pricing";
+import Features from "./components/Features";
 
 export default function Home() {
   return (
@@ -13,7 +13,7 @@ export default function Home() {
       <CTABanner></CTABanner>
       <EventsPage></EventsPage>
       <Pricing></Pricing>
-      <FeaturesSection></FeaturesSection>
+      <Features></Features>
       <Testimonials></Testimonials>
     </main>
   );
