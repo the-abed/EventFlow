@@ -1,18 +1,42 @@
 "use client";
 
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination } from "swiper/modules";
+
+import "swiper/css";
+import "swiper/css/pagination";
+
 export default function Testimonials() {
   const testimonials = [
     {
-      name: "Alice",
+      name: "Alice Johnson",
       feedback: "This platform made managing our events effortless!",
+      img: "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg",
     },
     {
-      name: "Bob",
-      feedback: "Great UI and easy to use. Highly recommended.",
+      name: "Michael Smith",
+      feedback: "The UI is clean and smooth. Love the experience!",
+      img: "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg",
     },
     {
-      name: "Charlie",
-      feedback: "I love the analytics features. Very insightful!",
+      name: "Sophia Lee",
+      feedback: "Very reliable and the features saved us so much time.",
+      img: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg",
+    },
+    {
+      name: "David Martin",
+      feedback: "Amazing analytics tools! Helps track event performance.",
+      img: "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg",
+    },
+    {
+      name: "Emma Robinson",
+      feedback: "Easy to use and very efficient. Highly recommended.",
+      img: "https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg",
+    },
+    {
+      name: "Chris Evans",
+      feedback: "Organizing events has never been this smooth!",
+      img: "https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg",
     },
   ];
 
@@ -22,27 +46,48 @@ export default function Testimonials() {
         What Our Users Say
       </h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-6xl mx-auto">
+      <Swiper
+        modules={[Autoplay, Pagination]}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
+        pagination={{ clickable: true }}
+        spaceBetween={30}
+        slidesPerView={1}
+        breakpoints={{
+          640: { slidesPerView: 2 },
+          1024: { slidesPerView: 3 },
+        }}
+        className="max-w-6xl mx-auto"
+      >
         {testimonials.map((t, i) => (
-          <div
-            key={i}
-            className="
-              relative backdrop-blur-xl bg-white/30 
-              border border-white/40 
-              shadow-xl p-8 rounded-2xl 
-              hover:-translate-y-2 hover:shadow-2xl 
-              transition-all duration-300
-            "
-          >
-            {/* Floating Gradient Line */}
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-accent rounded-t-2xl"></div>
+          <SwiperSlide key={i}>
+            <div
+              className="
+                relative backdrop-blur-xl bg-white/30 
+                border border-white/40 
+                shadow-xl p-8 rounded-2xl 
+                hover:-translate-y-2 hover:shadow-2xl 
+                transition-all duration-300 text-center
+              "
+            >
+              {/* Gradient Line */}
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-accent rounded-t-2xl"></div>
 
-            <p className="text-gray-800 italic mb-6 text-lg">"{t.feedback}"</p>
+              {/* Profile Image */}
+              <img
+                src={t.img}
+                alt={t.name}
+                className="w-20 h-20 rounded-full mx-auto mb-6 object-cover shadow-md"
+              />
 
-            <h4 className="font-semibold text-primary text-xl">{t.name}</h4>
-          </div>
+              <p className="text-gray-800 italic mb-6 text-lg">"{t.feedback}"</p>
+              <h4 className="font-semibold text-primary text-xl">{t.name}</h4>
+            </div>
+          </SwiperSlide>
         ))}
-      </div>
+      </Swiper>
     </section>
   );
 }

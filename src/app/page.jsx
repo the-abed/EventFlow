@@ -4,6 +4,7 @@ import Hero from "./components/Hero";
 import Testimonials from "./components/Testimonials";
 import FeaturesSection from "./components/FeaturesSection";
 import EventsPage from "./(protected)/event/[id]/page";
+import Pricing from "./components/Pricing";
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
       <Hero></Hero>
       <CTABanner></CTABanner>
       <EventsPage></EventsPage>
+      <Pricing></Pricing>
       <FeaturesSection></FeaturesSection>
       <Testimonials></Testimonials>
     </main>
