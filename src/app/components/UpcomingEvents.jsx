@@ -29,7 +29,7 @@ export default function UpcomingEvents() {
   if (!events.length) return <p className="text-center mt-10">No events found.</p>;
 
   return (
-    <div className="py-16 px-4">
+    <div className="py-6 px-4">
       <h2 className="text-3xl font-bold text-center mb-12 text-primary">
         Upcoming Events
       </h2>

@@ -18,7 +18,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={ "min-h-screen flex flex-col"}>
+      <body className= "min-h-screen flex flex-col">
         <AuthProvider>
           <Navbar />
           <main className="grow w-11/12 mx-auto">{children}</main>

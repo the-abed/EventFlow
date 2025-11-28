@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import axiosSecure from "@/app/lib/axiosSecure";
 import Swal from "sweetalert2";
+import { useSession } from "next-auth/react";
 
 export default function EventForm() {
   const [title, setTitle] = useState("");
@@ -11,6 +12,7 @@ export default function EventForm() {
   const [location, setLocation] = useState("");
   const [image, setImage] = useState(null);
   const [loading, setLoading] = useState(false);
+  const { data: session } = useSession();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -35,15 +37,20 @@ export default function EventForm() {
       const imageUrl = imgbbData.data.url;
 
       // 2️⃣ Send event data to backend
+      
+
       const res = await axiosSecure.post("/api/events", {
         title,
         description,
         date,
         location,
         image: imageUrl,
-      });
+       
+      },
+      );
 
-      if (res.status !== 201) throw new Error(res.data?.message || "Failed to create event");
+      if (res.status !== 201)
+        throw new Error(res.data?.message || "Failed to create event");
 
       Swal.fire({
         icon: "success",
@@ -91,7 +98,9 @@ export default function EventForm() {
 
       {/* Description */}
       <div className="flex flex-col">
-        <label className="text-gray-200 font-medium mb-1">Event Description</label>
+        <label className="text-gray-200 font-medium mb-1">
+          Event Description
+        </label>
         <textarea
           placeholder="Enter description"
           value={description}

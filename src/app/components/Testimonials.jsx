@@ -25,9 +25,10 @@ export default function Testimonials() {
       </h2>
 
       <Swiper
-        modules={[Autoplay, Pagination]}
+        modules={[Autoplay, Pagination, ]}
         autoplay={{ delay: 2500, disableOnInteraction: false }}
         pagination={{ clickable: true }}
+        rotation={true}
         spaceBetween={30}
         slidesPerView={1}
         breakpoints={{ 640: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } }}

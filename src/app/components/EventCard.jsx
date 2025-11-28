@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function EventCard({ title, description, date, location, image }) {
   return (
-    <div className="bg-white rounded-lg shadow hover:shadow-lg overflow-hidden transition transform hover:-translate-y-1">
+    <div className="dark:bg-gray-900 rounded-lg shadow hover:shadow-lg overflow-hidden transition transform hover:-translate-y-1">
       {image && (
        <img
         className="w-full h-52 object-cover"

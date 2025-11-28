@@ -7,7 +7,7 @@ export default function CTABanner() {
     <section className="relative overflow-hidden py-20 px-6 mt-6 rounded-3xl">
       
       {/* Gradient Background */}
-      <div className="absolute inset-0 bg-gradient-to-r from-primary via-secondary to-primary opacity-90"></div>
+      <div className="absolute inset-0 bg-black dark:bg-gradient-to-r from-primary via-secondary to-primary opacity-90"></div>
 
       {/* Pattern Overlay */}
       <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/asfalt-light.png')] opacity-20"></div>

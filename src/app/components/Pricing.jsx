@@ -21,7 +21,7 @@ export default function Pricing() {
   ];
 
   return (
-    <section className="py-20 mb-5 text-white px-4">
+    <section className="py-20 mb-5  px-4">
       <h2 className="text-4xl font-bold text-center mb-14">
         Simple & Transparent Pricing
       </h2>
@@ -30,20 +30,12 @@ export default function Pricing() {
         {plans.map((p, i) => (
           <div
             key={i}
-            className={`
-              p-10 bg-white/5 rounded-2xl shadow-2xl border backdrop-blur-xl
-              ${
-                p.highlight
-                  ? "bg-white/10 border-accent/40 scale-105"
-                  : "bg-white/5 border-white/10"
-              }
-              transition-all duration-300 hover:scale-105 hover:bg-white/10
-            `}
+            className="dark:bg-gray-900 bg-yellow-50 rounded-xl shadow-lg p-8 hover:shadow-2xl transition-all"
           >
             <h3 className="text-2xl font-semibold mb-4 text-center">{p.title}</h3>
             <p className="text-4xl font-bold text-center mb-8">{p.price}</p>
 
-            <ul className="space-y-3 text-gray-300">
+            <ul className="space-y-3 ">
               {p.benefits.map((b, idx) => (
                 <li key={idx}>✔ {b}</li>
               ))}
