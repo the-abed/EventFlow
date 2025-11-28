@@ -14,21 +14,22 @@ export default function Hero() {
   ];
 
   return (
-    <section className="relative w-full h-[50vh] md:h-[80vh] text-white flex items-center justify-center rounded-xl mt-28">
+    <section className="relative w-full h-[50vh] md:h-[80vh] text-white flex items-center justify-center rounded-2xl mt-28">
       {/* Background Slider */}
       <Swiper
         modules={[Autoplay, Pagination]}
         autoplay={{ delay: 3000, disableOnInteraction: false }}
         pagination={{ clickable: true }}
         loop
-        className="absolute inset-0 w-full h-full z-0"
+        className="absolute inset-0 w-full h-full z-0 rounded-2xl"
       >
         {slides.map((src, index) => (
           <SwiperSlide key={index}>
             <div
-              className="w-full h-full  bg-cover bg-center rounded-2xl"
+              className="w-full h-full bg-cover bg-center rounded-2xl"
               style={{ backgroundImage: `url(${src})` }}
             >
+               {/* Foreground Content */}
               <div className="absolute inset-0 flex flex-col items-center justify-center">
                 <h1 className="text-4xl md:text-6xl font-bold text-primary mb-4">
                   Manage Your Events Seamlessly
@@ -49,9 +50,9 @@ export default function Hero() {
       </Swiper>
 
       {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-black/60 z-10"></div>
+      <div className="absolute inset-0 bg-black/60 z-10 "></div>
 
-      {/* Foreground Content */}
+     
     </section>
   );
 }

@@ -4,7 +4,8 @@ import Link from "next/link";
 
 export default function CTABanner() {
   return (
-    <section className="relative overflow-hidden py-20 px-6 mt-6">
+    <section className="relative overflow-hidden py-20 px-6 mt-6 rounded-3xl">
+      
       {/* Gradient Background */}
       <div className="absolute inset-0 bg-gradient-to-r from-primary via-secondary to-primary opacity-90"></div>
 
@@ -23,8 +24,7 @@ export default function CTABanner() {
 
         <Link
           href="/register"
-          className="inline-block bg-white text-primary font-semibold px-10 py-4 rounded-full shadow-xl 
-                     hover:shadow-2xl hover:scale-105 hover:bg-gray-100 transition-all duration-300"
+          className="inline-block bg-white text-primary font-semibold px-10 py-4 rounded-full border border-primary/30 shadow-xl hover:shadow-2xl hover:scale-105 hover:bg-gray-100 transition-all duration-300"
         >
           Sign Up Now
         </Link>

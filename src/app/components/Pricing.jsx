@@ -21,17 +21,17 @@ export default function Pricing() {
   ];
 
   return (
-    <section className="py-20 bg-[#0c0d12] text-white px-4">
+    <section className="py-20 mb-5 text-white px-4">
       <h2 className="text-4xl font-bold text-center mb-14">
         Simple & Transparent Pricing
       </h2>
 
-      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 ">
         {plans.map((p, i) => (
           <div
             key={i}
             className={`
-              p-10 rounded-2xl shadow-2xl border backdrop-blur-xl
+              p-10 bg-white/5 rounded-2xl shadow-2xl border backdrop-blur-xl
               ${
                 p.highlight
                   ? "bg-white/10 border-accent/40 scale-105"

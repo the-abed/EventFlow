@@ -2,14 +2,13 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import axiosSecure from "@/app/lib/axiosSecure";
 import Image from "next/image";
+import axiosSecure from "@/app/lib/axiosSecure";
 
 export default function ManageEvent() {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Fetch ONLY logged-in user's events
   useEffect(() => {
     async function fetchEvents() {
       try {
@@ -21,11 +20,12 @@ export default function ManageEvent() {
 
         setEvents(res.data || []);
       } catch (err) {
-        console.error("Failed to fetch user events:", err);
+        console.error("Failed to fetch user events:", err.response?.data || err.message);
       } finally {
         setLoading(false);
       }
     }
+
     fetchEvents();
   }, []);
 
@@ -41,7 +41,7 @@ export default function ManageEvent() {
 
       setEvents((prev) => prev.filter((e) => e._id !== id));
     } catch (err) {
-      console.error("Deletion failed:", err);
+      console.error("Deletion failed:", err.response?.data || err.message);
       alert("Failed to delete event");
     }
   };
@@ -86,13 +86,7 @@ export default function ManageEvent() {
           {events.map((event) => (
             <div
               key={event._id}
-              className="
-                bg-white/70 backdrop-blur-xl 
-                border border-white/40 
-                rounded-2xl shadow-lg 
-                hover:-translate-y-2 hover:shadow-2xl
-                transition-all duration-300 overflow-hidden
-              "
+              className="bg-white/70 backdrop-blur-xl border border-white/40 rounded-2xl shadow-lg hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 overflow-hidden"
             >
               {/* Event Image */}
               <div className="h-40 w-full overflow-hidden">
@@ -105,18 +99,10 @@ export default function ManageEvent() {
 
               {/* Content */}
               <div className="p-5">
-                <h2 className="text-xl font-bold text-gray-800 mb-2">
-                  {event.title}
-                </h2>
-
-                <p className="text-gray-600 text-sm mb-1">
-                  📅 {new Date(event.date).toLocaleDateString()}
-                </p>
+                <h2 className="text-xl font-bold text-gray-800 mb-2">{event.title}</h2>
+                <p className="text-gray-600 text-sm mb-1">📅 {new Date(event.date).toLocaleDateString()}</p>
                 <p className="text-gray-600 text-sm mb-3">📍 {event.location}</p>
-
-                <p className="text-gray-700 text-sm line-clamp-2 mb-4">
-                  {event.description}
-                </p>
+                <p className="text-gray-700 text-sm line-clamp-2 mb-4">{event.description}</p>
 
                 {/* Buttons */}
                 <div className="flex justify-between mt-4">

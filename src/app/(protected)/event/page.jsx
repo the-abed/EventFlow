@@ -14,7 +14,6 @@ const EventsPage = () => {
     const fetchEvents = async () => {
       try {
         const res = await axiosSecure.get("/api/events"); // 🔹 backend link already set
-        const recentEvents = res.data.slice(0, 6);
         setEvents(res.data);
         console.log(res.data);
       } catch (err) {

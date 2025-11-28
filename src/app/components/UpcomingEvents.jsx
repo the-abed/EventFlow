@@ -1,25 +1,22 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import EventCard from "@/app/components/EventCard";
-import axiosSecure from "@/app/lib/axiosSecure";
 import Link from "next/link";
+import axiosSecure from "@/app/lib/axiosSecure";
 
-const UpcomingEvents = () => {
+export default function UpcomingEvents() {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const res = await axiosSecure.get("/api/events");
-
-        // ⭐ Force only 6 items even if backend returns differently
-        const eventList = Array.isArray(res.data) ? res.data.slice(0, 6) : [];
-
-        setEvents(eventList);
+        const res = await axiosSecure.get("/api/upcoming-events");
+        console.log("Upcoming events:", res.data); // debug
+        setEvents(res.data);
       } catch (err) {
-        console.error("Error fetching events:", err);
+        console.error("Error fetching events:", err.response?.data || err.message);
       } finally {
         setLoading(false);
       }
@@ -57,6 +54,4 @@ const UpcomingEvents = () => {
       </Link>
     </div>
   );
-};
-
-export default UpcomingEvents;
+}
