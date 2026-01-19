@@ -2,9 +2,9 @@
 
 import React, { useEffect, useState } from "react";
 
-
 import EventCard from "@/app/components/EventCard";
-import axiosSecure from "@/app/lib/axiosSecure";
+import axios from "axios";
+
 
 const EventsPage = () => {
   const [events, setEvents] = useState([]);
@@ -13,7 +13,7 @@ const EventsPage = () => {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const res = await axiosSecure.get("/api/events"); // 🔹 backend link already set
+       const res = await axios.get("https://event-flow-server-phi.vercel.app/api/events");
         setEvents(res.data);
         console.log(res.data);
       } catch (err) {

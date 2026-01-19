@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import EventCard from "@/app/components/EventCard";
 import Link from "next/link";
-import axiosSecure from "@/app/lib/axiosSecure";
+import axios from "axios";
 
 export default function UpcomingEvents() {
   const [events, setEvents] = useState([]);
@@ -12,7 +12,7 @@ export default function UpcomingEvents() {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const res = await axiosSecure.get("/api/events");
+        const res = await axios.get("https://event-flow-server-phi.vercel.app/api/events");
         // console.log("Upcoming events:", res.data); // debug
         const limitedEvents = res.data.slice(0, 6);
         setEvents(limitedEvents);

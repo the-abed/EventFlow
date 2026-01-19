@@ -17,6 +17,7 @@ export default function Footer() {
               width={45}
               height={45}
               className="object-contain"
+              suppressHydrationWarning={true}
             />
             <span className="text-xl font-bold text-white">EventFlow</span>
           </div>

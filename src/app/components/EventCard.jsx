@@ -14,7 +14,7 @@ export default function EventCard({ title, description, date, location, image, i
       )}
       <div className="p-4">
         <h3 className="text-xl text-primary font-bold mb-2">{title}</h3>
-        <p className="text-gray-700 mb-2">{description}</p>
+        {/* <p className="text-gray-700 mb-2">{description}</p> */}
         <p className="text-sm text-gray-500">
           {new Date(date).toLocaleDateString()} | {location}
         </p>
