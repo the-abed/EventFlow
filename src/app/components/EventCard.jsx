@@ -1,9 +1,11 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 
-export default function EventCard({ title, description, date, location, image }) {
+export default function EventCard({ title, description, date, location, image, id }) {
   return (
+    <Link href={`/event/${id}`}>
     <div className="dark:bg-gray-900 rounded-lg shadow hover:shadow-lg overflow-hidden transition transform hover:-translate-y-1">
       {image && (
        <img
@@ -18,5 +20,6 @@ export default function EventCard({ title, description, date, location, image })
         </p>
       </div>
     </div>
+    </Link>
   );
 }

@@ -1,8 +1,6 @@
 // app/layout.jsx
 import { Inter } from 'next/font/google';
-import './globals.css'; // Your main stylesheet (e.g., Tailwind)
-
-
+import './globals.css';
 
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
@@ -18,11 +16,17 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className= "min-h-screen flex flex-col">
+      {/* suppressHydrationWarning is added here to ignore 
+          browser extension attributes like 'data-gr-ext-installed' 
+      */}
+      <body 
+        className={`${inter.className} min-h-screen flex flex-col`}
+        suppressHydrationWarning
+      >
         <AuthProvider>
           <Navbar />
           <main className="grow w-11/12 mx-auto">{children}</main>
-         <Footer></Footer>
+          <Footer />
         </AuthProvider>
       </body>
     </html>

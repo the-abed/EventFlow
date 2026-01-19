@@ -12,9 +12,10 @@ export default function UpcomingEvents() {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const res = await axiosSecure.get("/api/upcoming-events");
-        console.log("Upcoming events:", res.data); // debug
-        setEvents(res.data);
+        const res = await axiosSecure.get("/api/events");
+        // console.log("Upcoming events:", res.data); // debug
+        const limitedEvents = res.data.slice(0, 6);
+        setEvents(limitedEvents);
       } catch (err) {
         console.error("Error fetching events:", err.response?.data || err.message);
       } finally {
@@ -38,6 +39,7 @@ export default function UpcomingEvents() {
         {events.map((event) => (
           <EventCard
             key={event._id}
+            id={event._id}
             title={event.title}
             description={event.description}
             date={event.date}

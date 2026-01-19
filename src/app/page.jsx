@@ -14,7 +14,7 @@ export default function Home() {
       <UpcomingEvents></UpcomingEvents>
       <Pricing></Pricing>
       <Features></Features>
-      <Testimonials></Testimonials>
+      {/* <Testimonials></Testimonials> */}
     </main>
   );
 }

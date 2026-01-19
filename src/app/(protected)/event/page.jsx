@@ -36,6 +36,7 @@ const EventsPage = () => {
         {events.map((event) => (
           <EventCard
             key={event._id}
+            id={event._id}
             title={event.title}
             description={event.description}
             date={event.date}
